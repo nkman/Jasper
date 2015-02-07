@@ -32,7 +32,23 @@ namespace Jasper
 
         public void Signup(object sender, RoutedEventArgs e)
         {
+            
+            var values = new List<KeyValuePair<string, string>>
+                    {
+                        new KeyValuePair<string, string>("firstname", firstname.Text),
+                        new KeyValuePair<string, string>("lastname", lastname.Text),
+                        new KeyValuePair<string, string>("email", email.Text),
+                        new KeyValuePair<string, string>("username", username.Text),
+                        new KeyValuePair<string, string>("password", password.Password)
+                    };
             System.Diagnostics.Debug.WriteLine("Button pressed !!");
+            System.Diagnostics.Debug.WriteLine(values);
+
+            var httpClient = new HttpClient(new HttpClientHandler());
+            HttpResponseMessage response = await httpClient.PostAsync(url, new FormUrlEncodedContent(values));
+            response.EnsureSuccessStatusCode();
+            var responseString = await response.Content.ReadAsStringAsync();
+
         }
 
     }

@@ -60,12 +60,17 @@
             <phone:PanoramaItem Header="Signup">
                 <!--Double line list with image placeholder and text wrapping using a floating header that scrolls with the content-->
                 <StackPanel>
-                <TextBox HorizontalAlignment="Left" Height="72" Margin="1,26,-83,0" TextWrapping="Wrap" x:Name="firstname" Text="First Name" VerticalAlignment="Top" Width="400"/>
-                <TextBox HorizontalAlignment="Left" Height="72" Margin="1,16,-83,0" TextWrapping="Wrap" x:Name="lastname" Text="Last Name" VerticalAlignment="Top" Width="400"/>
-                <TextBox HorizontalAlignment="Left" Height="72" Margin="1,16,-83,0" TextWrapping="Wrap" x:Name="email" Text="Email" VerticalAlignment="Top" Width="400"/>
-                <TextBox HorizontalAlignment="Left" Height="72" Margin="1,16,-83,0" TextWrapping="Wrap" x:Name="username" Text="Username" VerticalAlignment="Top" Width="400"/>
-                <TextBox HorizontalAlignment="Left" Height="72" Margin="1,16,-83,0" TextWrapping="Wrap" x:Name="password" Text="Password" VerticalAlignment="Top" Width="400"/>
-                <Button HorizontalAlignment="Left" Height="72" Margin="1,16,-83,0" Width="400" Click="Signup">Signup</Button>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,6,-83,0">First Name</TextBlock>
+                    <TextBox HorizontalAlignment="Left" Height="72" Margin="1,6,-83,0" TextWrapping="Wrap" x:Name="firstname" Text="" VerticalAlignment="Top" Width="400"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,6,-83,0">Last Name</TextBlock>
+                    <TextBox HorizontalAlignment="Left" Height="72" Margin="1,6,-83,0" TextWrapping="Wrap" x:Name="lastname" Text="" VerticalAlignment="Top" Width="400"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,6,-83,0">Email</TextBlock>
+                    <TextBox HorizontalAlignment="Left" Height="72" Margin="1,6,-83,0" TextWrapping="Wrap" x:Name="email" Text="" VerticalAlignment="Top" Width="400"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,6,-83,0">Username</TextBlock>
+                    <TextBox HorizontalAlignment="Left" Height="72" Margin="1,6,-83,0" TextWrapping="Wrap" x:Name="username" Text="" VerticalAlignment="Top" Width="400"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,6,-83,0">Password</TextBlock>
+                <PasswordBox  HorizontalAlignment="Left" Height="72" Margin="1,6,-83,0" x:Name="password" VerticalAlignment="Top" Width="400"/>
+                <Button HorizontalAlignment="Left" Height="72" Margin="1,6,-83,0" Width="400" Click="Signup">Signup</Button>
                 </StackPanel>
             </phone:PanoramaItem>
 
