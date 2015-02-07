@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Net;
-using System.Text;
 
 namespace Jasper
 {
@@ -16,7 +15,7 @@ namespace Jasper
        public delegate void RESTSuccessCallback(Stream stream);
        public delegate void RESTErrorCallback(String reason);
 
-       Login()
+       public Login()
        {
            email = null;
            password = null;
@@ -27,12 +26,12 @@ namespace Jasper
         * sets secret key obtained from server
         * returns error code, 0 if success
         */
-       int doLogin()
+       public int doLogin()
        {
            if(checkEmail()&&checkPassword())
            {
                //Send a HTTP request here
-               string url = "http://kakulkaserver";
+               string url = "https://google.com/";
                Dictionary<String, String> post_params=new Dictionary<string,string>();
                post_params.Add("email",email);
                post_params.Add("password",password);
@@ -67,12 +66,12 @@ namespace Jasper
            byte[] byteArray=new byte[32];
            response_stream.BeginRead(byteArray,0,32,null,null);
            secretKey = byteArray.ToString();
-
+           System.Diagnostics.Debug.WriteLine("Success");
        }
 
        void error_callback(String reason)
        {
-
+           System.Diagnostics.Debug.WriteLine(reason);
        }
        public void post(Uri uri, Dictionary<String, String> post_params, Dictionary<String, String> extra_headers, RESTSuccessCallback success_callback, RESTErrorCallback error_callback)
        {
@@ -105,7 +104,9 @@ namespace Jasper
                    Byte[] byteArray = Encoding.UTF8.GetBytes(postParamBuilder.ToString());
 
                    //guess one could just accept a byte[] [via function argument] for arbitrary data types - images, audio,...
+
                    postStream.Write(byteArray, 0, byteArray.Length);
+                   
                    postStream.Close();
 
 
@@ -119,12 +120,14 @@ namespace Jasper
                            {
                                //we call the success callback as long as we get a response stream
                                WebResponse response = req.EndGetResponse(final_result);
+                               System.Diagnostics.Debug.WriteLine("Success");
                                success_callback(response.GetResponseStream());
                                return;
                            }
                            catch (WebException e)
                            {
                                //otherwise call the error/failure callback
+                               System.Diagnostics.Debug.WriteLine(e.Status);
                                error_callback(e.Message);
                                return;
                            }
