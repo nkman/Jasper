@@ -19,16 +19,23 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="Documents" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 
+        <Grid x:Name="ContentPanel" Grid.ColumnSpan="3" Grid.RowSpan="3" VerticalAlignment="Bottom" >
+            <phone:LongListSelector x:Name="DocumentList" LayoutMode="Grid" GridCellSize="150, 150">
+                <phone:LongListSelector.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#FFFFC700" Height="140" Width="140" Margin="12,0,0,0" >
+                            <TextBlock Text="{Binding DocumentName}"/>
+                        </Border>
+                    </DataTemplate>
+                </phone:LongListSelector.ItemTemplate>
+            </phone:LongListSelector>
         </Grid>
     </Grid>
 

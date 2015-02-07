@@ -10,39 +10,51 @@ using Microsoft.Phone.Shell;
 using System.Threading.Tasks;
 using Windows.Storage;
 using System.IO.IsolatedStorage;
+using System.IO;
+using System.Collections.ObjectModel;
 
 namespace Jasper
 {
     public partial class DocListing : PhoneApplicationPage
     {
+        ObservableCollection<DocumentList> dataSource;
+
         public DocListing()
         {
+
             InitializeComponent();
-            Grid DocumentGrid = this.ContentPanel;
-            AddToGrid(DocumentGrid);
+            dataSource = new ObservableCollection<DocumentList>();
+            DocumentList.ItemsSource = dataSource;
+            AddToGrid();
         }
 
-        public async Task createFolder()
+        public void createFolder()
         {
-            StorageFolder local = Windows.Storage.ApplicationData.Current.LocalFolder;
+            IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication();
             System.Diagnostics.Debug.WriteLine("Creating folder");
-            // Create a new folder name DataFolder.
-            var dataFolder = await local.CreateFolderAsync("Jasper", CreationCollisionOption.OpenIfExists);
+            store.CreateDirectory("Jasper");
+
         }
 
-        public async Task<String[]> ReadFile()
+        public String[] ReadFile()
         {
             System.Diagnostics.Debug.WriteLine("Reading file");
+
             IsolatedStorageFile file = IsolatedStorageFile.GetUserStoreForApplication();
             if (file.GetDirectoryNames().Contains("Jasper"))
             {
+                WriteToFile();
+                System.Diagnostics.Debug.WriteLine("Directory found");
                 string directory = "Jasper/";
                 string[] filenames = file.GetFileNames(directory);
                 return filenames;
             }
             else
             {
-                await createFolder();
+
+                System.Diagnostics.Debug.WriteLine("Directory Not found");
+                createFolder();
+                WriteToFile();
                 string directory = "Jasper/";
                 string[] filenames = file.GetFileNames(directory);
                 return filenames;
@@ -50,25 +62,52 @@ namespace Jasper
             }
         }
 
-        public async void AddToGrid(Grid DocumentGrid)
+        public void AddToGrid()
         {
-            String[] filenames = await ReadFile();
-            System.Diagnostics.Debug.WriteLine("Starting dispatcher");
-            Dispatcher.BeginInvoke(() =>
+            String[] filenames = ReadFile();
+
+            System.Diagnostics.Debug.WriteLine("Files found: " + filenames.Length);
+            System.Diagnostics.Debug.WriteLine("Creating DataSource");
+
+            for (int i = 0; i < filenames.Length; i++)
             {
+                dataSource.Add(new DocumentList(filenames[i]));
+            }
 
-                StackPanel panel = new StackPanel();
-                panel.Orientation = System.Windows.Controls.Orientation.Vertical;
-                for (int i = 0; i < filenames.Length; i++)
-                {
-                    TextBlock text = new TextBlock() { Text = filenames[i] };
-                    panel.Children.Add(text);
-                }
-
-                DocumentGrid.Children.Add(panel);
-            });
+            System.Diagnostics.Debug.WriteLine("Done DataSource");
 
         }
 
+        private void WriteToFile()
+        {
+            IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication();
+            System.Diagnostics.Debug.WriteLine("Finding fake files");
+            if (store.GetDirectoryNames().Contains("Jasper"))
+            {
+                System.Diagnostics.Debug.WriteLine("Writing fake files");
+                string directory = "Jasper";
+                var isoFileStream = new IsolatedStorageFileStream(directory + "\\dd.txt", FileMode.OpenOrCreate, store);
+                isoFileStream = new IsolatedStorageFileStream(directory + "\\dd1.txt", FileMode.OpenOrCreate, store);
+                isoFileStream = new IsolatedStorageFileStream(directory + "\\dd2.txt", FileMode.OpenOrCreate, store);
+                isoFileStream = new IsolatedStorageFileStream(directory + "\\dd4.txt", FileMode.OpenOrCreate, store);
+                isoFileStream = new IsolatedStorageFileStream(directory + "\\dd3.txt", FileMode.OpenOrCreate, store);
+            }
+            System.Diagnostics.Debug.WriteLine("Done Writing fake files");
+        }
+
+    }
+
+    public class DocumentList
+    {
+        public string DocumentName
+        {
+            get;
+            set;
+        }
+
+        public DocumentList(string documentName)
+        {
+            this.DocumentName = documentName;
+        }
     }
 }
