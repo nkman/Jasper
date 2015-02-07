@@ -15,7 +15,7 @@ namespace Jasper
 
         public static string loginUrl()
         {
-            return homeUrl() + "login/";
+            return homeUrl() + "login.php";
         }
 
         public static string signupUrl()

@@ -6,13 +6,23 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace Jasper
 {
+
+    public class returnInfo
+    {
+        public int status { get; set; }
+        public String firstname { get; set; }
+        public string lastname { get; set; }
+        public String email { get; set; }
+    }
    public class Login
     {
        public String email, password;
        private String secretKey;
+       List<returnInfo> m_ProductList = null;
        public delegate void RESTSuccessCallback(Stream stream);
        public delegate void RESTErrorCallback(String reason);
 
@@ -84,7 +94,12 @@ namespace Jasper
            var responseString = await response.Content.ReadAsStringAsync();
            secretKey = responseString;
            System.Diagnostics.Debug.WriteLine("Post success:"+responseString);
-           
+           var root1 = JsonConvert.DeserializeObject<returnInfo>(responseString);
+           System.Diagnostics.Debug.WriteLine(root1.email);
+           System.Diagnostics.Debug.WriteLine(root1.firstname);
+           System.Diagnostics.Debug.WriteLine(root1.lastname);
+           System.Diagnostics.Debug.WriteLine(root1.status);
+
        }
     }
 }

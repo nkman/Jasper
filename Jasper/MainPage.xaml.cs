@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using System.Net.Http;
+using Newtonsoft.Json;
 using Jasper.Resources;
 
 namespace Jasper
@@ -34,8 +35,8 @@ namespace Jasper
 
         public void Login(object sender, RoutedEventArgs e)
         {
-            StreamData st = new StreamData();
-            st.openWebSocket();
+            //StreamData st = new StreamData();
+            //st.openWebSocket();
             Login l = new Login();
             l.email = EmailAddress.Text;
             l.password = Password.Password;
@@ -91,6 +92,27 @@ namespace Jasper
                 //response.EnsureSuccessStatusCode();
                 var responseString = await response.Content.ReadAsStringAsync();
                 System.Diagnostics.Debug.WriteLine(responseString);
+                System.Diagnostics.Debug.WriteLine("response: " + responseString);
+                var responseStrings = JsonConvert.SerializeObject(responseString);
+
+                bool signupSuccess = false;
+                foreach (string resp in responseStrings.Split(','))
+                {
+                    foreach (string entry in resp.Split(':'))
+                    {
+                        if (resp.Equals("Success"))
+                        {
+                            signupSuccess = true;
+                            System.Diagnostics.Debug.WriteLine("Signup succesful");
+                            break;
+                        }
+                    }
+                }
+
+                if (signupSuccess == false)
+                {
+                    System.Diagnostics.Debug.WriteLine("Signup Not - succesful");
+                }
             }
             catch (Exception err)
             {
