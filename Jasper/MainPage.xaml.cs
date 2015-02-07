@@ -7,6 +7,8 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using System.Net.Http;
+using Jasper.Resources;
 
 namespace Jasper
 {
@@ -30,7 +32,7 @@ namespace Jasper
             }
         }
 
-        public void Signup(object sender, RoutedEventArgs e)
+        public async void Signup(object sender, RoutedEventArgs e)
         {
             
             var values = new List<KeyValuePair<string, string>>
@@ -45,11 +47,10 @@ namespace Jasper
             System.Diagnostics.Debug.WriteLine(values);
 
             var httpClient = new HttpClient(new HttpClientHandler());
-            HttpResponseMessage response = await httpClient.PostAsync(url, new FormUrlEncodedContent(values));
+            urlConfig urlconfig = new urlConfig();
+            HttpResponseMessage response = await httpClient.PostAsync(urlconfig.homeUrl(), new FormUrlEncodedContent(values));
             response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
-
         }
-
     }
 }

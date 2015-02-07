@@ -45,15 +45,15 @@
             <!--Panorama item one-->
             <phone:PanoramaItem Header="Login">
                 <!--Single line list with text wrapping-->
-                <phone:LongListSelector Margin="0,0,-22,0" ItemsSource="{Binding Items}">
-                    <phone:LongListSelector.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Margin="0,-6,0,12">
-                                <TextBlock Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="{StaticResource PhoneFontSizeExtraLarge}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </phone:LongListSelector.ItemTemplate>
-                </phone:LongListSelector>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Email" Margin="0,12,0,0"/>
+                    <TextBox x:Name="EmailAddress" Text="Email"/>
+                    <TextBlock Text="Password" Margin="0,12,0,0"/>
+                    <TextBox x:Name="Password" Text="Password"/>
+                    <Button x:Name="LoginButton" Content="Login" Margin="0,12,0,0"/>
+
+                    <Button x:Name="GoToRegister" Content="Not Registered ?" Margin="0,56,0,0"/>
+                </StackPanel>
             </phone:PanoramaItem>
 
             <!--Panorama item two-->
@@ -74,26 +74,7 @@
                 </StackPanel>
             </phone:PanoramaItem>
 
-            <!--Panorama item three-->
-            <phone:PanoramaItem Header="third item" Orientation="Horizontal">
-                <!--Double wide Panorama with large image placeholders-->
-                <Grid>
-                    <StackPanel Margin="0,4,16,0" Orientation="Vertical" VerticalAlignment="Top">
-                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
-                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
-                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
-                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
-                        </StackPanel>
-                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="0,12,0,0">
-                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
-                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
-                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
-                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Grid>
-            </phone:PanoramaItem>
+            
         </phone:Panorama>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
