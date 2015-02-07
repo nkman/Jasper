@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Microsoft.Phone.Tasks;
 
 namespace Jasper
 {
@@ -26,7 +27,15 @@ namespace Jasper
 
         public void share(object sender, EventArgs e)
         {
+            EmailComposeTask emailComposeTask = new EmailComposeTask();
 
+            emailComposeTask.Subject = "Invitation";
+            emailComposeTask.Body = Data_Baby.Text;
+            emailComposeTask.To = "recipient@example.com";
+            //emailComposeTask.Cc = "cc@example.com";
+            //emailComposeTask.Bcc = "bcc@example.com";
+
+            emailComposeTask.Show();
         }
 
         public void credit(object sender, EventArgs e)

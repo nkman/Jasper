@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 using System.Threading.Tasks;
 using WebSocket4Net;
 

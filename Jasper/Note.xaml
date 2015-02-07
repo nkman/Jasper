@@ -28,7 +28,7 @@
 
         <!--ContentPanel - place additional content here-->
 
-        <TextBox HorizontalAlignment="Left" Height="564" Margin="10,122,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="456" Grid.RowSpan="2" AcceptsReturn="True"/>
+        <TextBox HorizontalAlignment="Left" Height="564" Margin="10,122,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="456" Grid.RowSpan="2" AcceptsReturn="True" x:Name="Data_Baby" />
 
 
     </Grid>
