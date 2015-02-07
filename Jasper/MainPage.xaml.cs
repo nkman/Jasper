@@ -34,6 +34,8 @@ namespace Jasper
 
         public void Login(object sender, RoutedEventArgs e)
         {
+            StreamData st = new StreamData();
+            st.openWebSocket();
             Login l = new Login();
             l.email = EmailAddress.Text;
             l.password = Password.Password;

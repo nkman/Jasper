@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+
 namespace Jasper
 {
    public class Login
@@ -15,7 +16,7 @@ namespace Jasper
        public delegate void RESTSuccessCallback(Stream stream);
        public delegate void RESTErrorCallback(String reason);
 
-       public static User user;
+       public User user;
        public Login()
        {
            email = null;
@@ -83,8 +84,7 @@ namespace Jasper
            var responseString = await response.Content.ReadAsStringAsync();
            secretKey = responseString;
            System.Diagnostics.Debug.WriteLine("Post success:"+responseString);
-                                                    
-
+           
        }
     }
 }
