@@ -17,7 +17,7 @@ namespace Jasper
             websocket.Opened += new EventHandler(websocket_Opened);
             websocket.Error += new EventHandler<ErrorEventArgs>(websocket_Error);
             websocket.Closed += new EventHandler(websocket_Closed);
-            websocket.MessageReceived += new EventHandler(websocket_MessageReceived);
+            //websocket.MessageReceived += new EventHandler(websocket_MessageReceived);
             websocket.Open();
         }
 
@@ -35,7 +35,7 @@ namespace Jasper
 
         private void websocket_MessageReceived(object sender, EventArgs e)
         {
-            websocket.ReceiveBufferSize(128);
+            //websocket.ReceiveBufferSize(128);
             throw new NotImplementedException();
         }
 

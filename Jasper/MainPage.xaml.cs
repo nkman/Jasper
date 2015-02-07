@@ -41,6 +41,18 @@ namespace Jasper
             public string email { get; set; }
         }
 
+        public void Cha00nge(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("lll");
+
+            this.NavigationService.Navigate(new Uri("/Note.xaml", UriKind.Relative));
+        }
+
+        public void MainPageBakchodi(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Note.xaml", UriKind.RelativeOrAbsolute));
+        }
+
         public async void Signup(object sender, RoutedEventArgs e)
         {
             SignupVariable val = new SignupVariable();

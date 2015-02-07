@@ -16,5 +16,28 @@ namespace Jasper
         {
             InitializeComponent();
         }
+
+
+
+        public void save_local(object sender, EventArgs e)
+        {
+            
+        }
+
+        public void share(object sender, EventArgs e)
+        {
+
+        }
+
+        public void credit(object sender, EventArgs e)
+        {
+
+        }
+
+        public void add_invite(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
