@@ -66,6 +66,13 @@ namespace Jasper
        }
 
 
+       void success_callback(Stream response_stream)
+       {
+           byte[] byteArray=new byte[32];
+           response_stream.BeginRead(byteArray,0,32,null,null);
+           secretKey = byteArray.ToString();
+       }
+
 
        public async void post(Uri uri, List<KeyValuePair<string, string>> values)
        {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Jasper
 {
-    class User
+    public class User
     {
         String firstName;
         String lastName;
