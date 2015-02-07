@@ -15,13 +15,26 @@ namespace Jasper
 {
     public partial class Note : PhoneApplicationPage
     {
+        public string fileNameToEdit { get; set; }
+
+        
+
         public Note()
         {
             InitializeComponent();
+            /**/
+            System.Diagnostics.Debug.WriteLine("Lololo");
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            fileNameToEdit = NavigationContext.QueryString["file"];
+            System.Diagnostics.Debug.WriteLine(fileNameToEdit);
             using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
             {
                 using (IsolatedStorageFileStream isfs =
-                   isf.OpenFile("file.txt", FileMode.OpenOrCreate))
+                       isf.OpenFile(fileNameToEdit, FileMode.OpenOrCreate))
                 {
                     using (StreamReader sr = new StreamReader(isfs))
                     {
@@ -29,9 +42,9 @@ namespace Jasper
                         sr.Close();
                     }
                 }
-
             }
         }
+
 
 
 
@@ -39,7 +52,8 @@ namespace Jasper
         {
             using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                using (IsolatedStorageFileStream isfs = isf.OpenFile("file.txt", FileMode.OpenOrCreate, FileAccess.Write))
+                string fname = fileNameToEdit;
+                using (IsolatedStorageFileStream isfs = isf.OpenFile(fname, FileMode.OpenOrCreate, FileAccess.Write))
                 {
                     using (StreamWriter sw = new StreamWriter(isfs))
                     {
@@ -69,7 +83,7 @@ namespace Jasper
 
         public void add_invite(object sender, EventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/invitation.xaml", UriKind.RelativeOrAbsolute));
         }
 
     }
