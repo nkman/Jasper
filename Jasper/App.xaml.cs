@@ -79,6 +79,13 @@ namespace Jasper
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 
+            using (DbDataContext db = new DbDataContext(DbDataContext.DBConnectionString))
+            {
+                if (db.DatabaseExists() == false)
+                {
+                    db.CreateDatabase();
+                }
+            }
         }
 
         // Code to execute when the application is launching (eg, from Start)

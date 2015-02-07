@@ -27,7 +27,6 @@ namespace Jasper
             IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication();
             if (store.GetDirectoryNames().Contains("./"))
             {
-                System.Diagnostics.Debug.WriteLine("Writing fake files");
                 string directory = "./";
                 var isoFileStream = new IsolatedStorageFileStream(directory + "\\" + fileNameL.Text, FileMode.OpenOrCreate, store);
             }
