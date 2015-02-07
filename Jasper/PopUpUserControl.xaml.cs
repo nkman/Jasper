@@ -39,12 +39,7 @@ namespace Jasper
             if (fileNameL.Text == ""){
                 return;
             }
-            IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication();
-            if (store.GetDirectoryNames().Contains("./"))
-            {
-                string directory = "./";
-                var isoFileStream = new IsolatedStorageFileStream(directory + "\\" + fileNameL.Text, FileMode.OpenOrCreate, store);
-            }
+            
 
             dbServices d = new dbServices();
 
@@ -67,11 +62,18 @@ namespace Jasper
                 if (responseStrings.status == 0)
                 {
                     d.addnoteInDb((onCreateNote)responseStrings, fileNameL.Text);
-                    NavigationService.Navigate(new Uri("/DocListing.xaml", UriKind.RelativeOrAbsolute));
+                    IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication();
+                    if (store.GetDirectoryNames().Contains("./"))
+                    {
+                        string directory = "./";
+                        var isoFileStream = new IsolatedStorageFileStream(directory + "\\" + fileNameL.Text, FileMode.OpenOrCreate, store);
+                    }
+                    NavigationService.Navigate(new Uri("/Note.xaml?file=" + fileNameL.Text, UriKind.RelativeOrAbsolute));
                 }
                 else
                 {
                     System.Diagnostics.Debug.WriteLine("Possibly wrong password !!"); //Add Message box here.
+                    NavigationService.Navigate(new Uri("/DocListing.xaml", UriKind.RelativeOrAbsolute));
                 }
             }
             catch (Exception err)
@@ -79,7 +81,6 @@ namespace Jasper
                 System.Diagnostics.Debug.WriteLine(err.ToString());
             }
 
-            NavigationService.Navigate(new Uri("/Note.xaml?file=" + fileNameL.Text, UriKind.RelativeOrAbsolute));
         }
 
         public void DoNotCreateANewFile(object sender, EventArgs e)
@@ -90,6 +91,7 @@ namespace Jasper
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            NavigationService.RemoveBackEntry();
         }
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
