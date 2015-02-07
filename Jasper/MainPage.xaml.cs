@@ -40,6 +40,7 @@ namespace Jasper
             l.email = EmailAddress.Text;
             l.password = Password.Password;
             l.doLogin();
+            NavigationService.Navigate(new Uri("/DocListing.xaml", UriKind.RelativeOrAbsolute));
         }
 
         public class SignupVariable
