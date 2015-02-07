@@ -1,0 +1,17 @@
+ create table users(
+    uid INT NOT NULL AUTO_INCREMENT,
+    username VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    PRIMARY KEY (uid));
+
+create table notes(
+	id INT NOT NULL AUTO_INCREMENT,
+	value TEXT,
+	PRIMARY KEY (id));
+
+create table shared(
+	id INT,
+	uid INT,
+	UNIQUE KEY(id,uid)
+);
