@@ -10,7 +10,7 @@ namespace Jasper
     {
         public string homeUrl()
         {
-            return "Kakul will give this/";
+            return "https://google.com/";
         }
 
         public string loginUrl()

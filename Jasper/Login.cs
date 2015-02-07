@@ -67,7 +67,6 @@ namespace Jasper
            byte[] byteArray=new byte[32];
            response_stream.BeginRead(byteArray,0,32,null,null);
            secretKey = byteArray.ToString();
-
        }
 
        void error_callback(String reason)
