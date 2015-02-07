@@ -99,7 +99,6 @@ namespace Jasper
            System.Diagnostics.Debug.WriteLine(root1.firstname);
            System.Diagnostics.Debug.WriteLine(root1.lastname);
            System.Diagnostics.Debug.WriteLine(root1.status);
-
        }
     }
 }

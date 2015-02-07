@@ -54,24 +54,27 @@ namespace Jasper
             }
         }
 
-        private string _secret;
+        private string _email;
         [Column]
-        public string user
+        public string email
         {
             get
             {
-                return _secret;
+                return _email;
             }
             set
             {
-                if (_secret != value)
+                if (_email != value)
                 {
-                    NotifyPropertyChanging("secret");
-                    _secret = value;
-                    NotifyPropertyChanged("secret");
+                    NotifyPropertyChanging("email");
+                    _email = value;
+                    NotifyPropertyChanged("email");
                 }
             }
         }
+
+        [Column(IsVersion = true)]
+        private Binary _version;
 
         #region INotifyPropertyChanged Members
 
@@ -107,8 +110,11 @@ namespace Jasper
     [Table]
     public class NoteText : INotifyPropertyChanged, INotifyPropertyChanging
     {
+        /*
+         * NoteId
+         * Name
+         * */
 
-        
         private int _noteId;
 
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]
@@ -129,24 +135,27 @@ namespace Jasper
             }
         }
 
-        private string _content;
+        private string _name;
         [Column(CanBeNull = true)]
-        public string Content
+        public string Name
         {
             get
             {
-                return _content;
+                return _name;
             }
             set
             {
-                if (_content != value)
+                if (_name != value)
                 {
-                    NotifyPropertyChanging("Content");
-                    _content = value;
-                    NotifyPropertyChanged("Content");
+                    NotifyPropertyChanging("Name");
+                    _name = value;
+                    NotifyPropertyChanged("Name");
                 }
             }
         }
+
+        [Column(IsVersion = true)]
+        private Binary _version;
 
         #region INotifyPropertyChanged Members
 
@@ -183,11 +192,9 @@ namespace Jasper
     public class LocalRelation : INotifyPropertyChanging, INotifyPropertyChanged
     {
         /*
-         * Name
-         * Amount
-         * Notice_id
-         * IsNegetive
-         * IsPositive
+         * NoteId
+         * Status
+         * UserEmail
          * */
 
         private int _dataId;

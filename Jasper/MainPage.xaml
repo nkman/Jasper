@@ -47,7 +47,7 @@
                 <!--Single line list with text wrapping-->
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Email" Margin="0,12,0,0"/>
-                    <TextBox x:Name="EmailAddress" Text="Email"/>
+                    <TextBox x:Name="EmailAddress" Text="kishormohite888@gmail.com"/>
                     <TextBlock Text="Password" Margin="0,12,0,0"/>
                     <PasswordBox x:Name="Password" />
                     <Button x:Name="LoginButton" Content="Login" Margin="0,12,0,0" Click="Login"/>
