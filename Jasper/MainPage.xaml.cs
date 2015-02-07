@@ -53,11 +53,12 @@ namespace Jasper
             {
                 App.ViewModel.LoadData();
             }
-            /*
+            dbServices d = new dbServices();
             try
             {
-                if (userLoggedIn)
+                if (d.isUserLoggedIn())
                 {
+                    NavigationService.RemoveBackEntry();
                     NavigationService.Navigate(new Uri("/DocListing.xaml", UriKind.RelativeOrAbsolute));
                 }
             }
@@ -65,7 +66,7 @@ namespace Jasper
             {
                 System.Diagnostics.Debug.WriteLine(exx.ToString());
             }
-             * */
+             
 
         }
 

@@ -108,6 +108,11 @@ namespace Jasper
         {
             NavigationService.Navigate(new Uri("/PopUpUserControl.xaml", UriKind.RelativeOrAbsolute));
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            NavigationService.RemoveBackEntry();
+        }
     }
 
     public class DocumentList

@@ -114,6 +114,21 @@ namespace Jasper
             }
         }
 
+        public bool isUserLoggedIn()
+        {
+            var userInDB = from userData _user in userDB.userdata select _user;
+            userdata = new ObservableCollection<userData>(userInDB);
+
+            if (userdata[0].email != "")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         #region INotifyPropertyChanged Members
 
         public event PropertyChangedEventHandler PropertyChanged;

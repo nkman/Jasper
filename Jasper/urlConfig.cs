@@ -30,7 +30,7 @@ namespace Jasper
 
         public static string getAllNoteUrl()
         {
-            return homeUrl() + "";
+            return homeUrl() + "listDoc.php";
         }
     }
 }
