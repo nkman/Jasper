@@ -29,5 +29,11 @@ namespace Jasper
                 App.ViewModel.LoadData();
             }
         }
+
+        public void Signup(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Button pressed !!");
+        }
+
     }
 }

@@ -37,13 +37,13 @@
          -->
 
          <!--Panorama control-->
-        <phone:Panorama Title="my application">
+        <phone:Panorama>
             <phone:Panorama.Background>
                 <ImageBrush ImageSource="/Jasper;component/Assets/PanoramaBackground.png"/>
             </phone:Panorama.Background>
 
             <!--Panorama item one-->
-            <phone:PanoramaItem Header="first item">
+            <phone:PanoramaItem Header="Login">
                 <!--Single line list with text wrapping-->
                 <phone:LongListSelector Margin="0,0,-22,0" ItemsSource="{Binding Items}">
                     <phone:LongListSelector.ItemTemplate>
@@ -57,35 +57,16 @@
             </phone:PanoramaItem>
 
             <!--Panorama item two-->
-            <phone:PanoramaItem>
+            <phone:PanoramaItem Header="Signup">
                 <!--Double line list with image placeholder and text wrapping using a floating header that scrolls with the content-->
-                <phone:LongListSelector Margin="0,-38,-22,2" ItemsSource="{Binding Items}">
-                    <phone:LongListSelector.ListHeaderTemplate>
-                        <DataTemplate>
-                            <Grid Margin="12,0,0,38">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Text="second item"
-                                           Style="{StaticResource PanoramaItemHeaderTextStyle}"
-                                           Grid.Row="0"/>
-                            </Grid>
-                        </DataTemplate>
-                    </phone:LongListSelector.ListHeaderTemplate>
-                    <phone:LongListSelector.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="12,2,0,4" Height="105" Width="432">
-                                <!--Replace rectangle with image-->
-                                <Border BorderThickness="1" Width="99" Height="99" BorderBrush="#FFFFC700" Background="#FFFFC700"/>
-                                <StackPanel Width="311" Margin="8,-7,0,0">
-                                    <TextBlock Text="{Binding LineOne}" TextWrapping="Wrap" Margin="10,0" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" />
-                                    <TextBlock Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="10,-2,10,0" Style="{StaticResource PhoneTextSubtleStyle}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </phone:LongListSelector.ItemTemplate>
-                </phone:LongListSelector>
+                <StackPanel>
+                <TextBox HorizontalAlignment="Left" Height="72" Margin="1,26,-83,0" TextWrapping="Wrap" x:Name="firstname" Text="First Name" VerticalAlignment="Top" Width="400"/>
+                <TextBox HorizontalAlignment="Left" Height="72" Margin="1,16,-83,0" TextWrapping="Wrap" x:Name="lastname" Text="Last Name" VerticalAlignment="Top" Width="400"/>
+                <TextBox HorizontalAlignment="Left" Height="72" Margin="1,16,-83,0" TextWrapping="Wrap" x:Name="email" Text="Email" VerticalAlignment="Top" Width="400"/>
+                <TextBox HorizontalAlignment="Left" Height="72" Margin="1,16,-83,0" TextWrapping="Wrap" x:Name="username" Text="Username" VerticalAlignment="Top" Width="400"/>
+                <TextBox HorizontalAlignment="Left" Height="72" Margin="1,16,-83,0" TextWrapping="Wrap" x:Name="password" Text="Password" VerticalAlignment="Top" Width="400"/>
+                <Button HorizontalAlignment="Left" Height="72" Margin="1,16,-83,0" Width="400" Click="Signup">Signup</Button>
+                </StackPanel>
             </phone:PanoramaItem>
 
             <!--Panorama item three-->
