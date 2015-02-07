@@ -10,7 +10,7 @@ namespace Jasper
     {
         public static string homeUrl()
         {
-            return "http://google.com/";
+            return "http://jasperx.cloudapp.net/";
         }
 
         public static string loginUrl()
@@ -20,7 +20,7 @@ namespace Jasper
 
         public static string signupUrl()
         {
-            return homeUrl() + "signup/";
+            return homeUrl() + "signup.php";
         }
     }
 }

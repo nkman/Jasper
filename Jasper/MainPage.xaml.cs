@@ -31,7 +31,7 @@ namespace Jasper
                 App.ViewModel.LoadData();
             }
         }
-        public void Login()
+        public void Login(object sender, RoutedEventArgs e)
         {
             Login l = new Login();
             l.email = EmailAddress.Text;
@@ -52,9 +52,10 @@ namespace Jasper
             System.Diagnostics.Debug.WriteLine(values);
 
             var httpClient = new HttpClient(new HttpClientHandler());
-            HttpResponseMessage response = await httpClient.PostAsync(urlConfig.homeUrl(), new FormUrlEncodedContent(values));
+            HttpResponseMessage response = await httpClient.PostAsync(urlConfig.signupUrl(), new FormUrlEncodedContent(values));
             //response.EnsureSuccessStatusCode();
             var responseString = await response.Content.ReadAsStringAsync();
+            System.Diagnostics.Debug.WriteLine(responseString);
         }
     }
 }
