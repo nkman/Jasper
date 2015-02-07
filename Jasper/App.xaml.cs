@@ -56,10 +56,7 @@ namespace Jasper
             // Language display initialization
             InitializeLanguage();
 
-            Login l=new Login();
-            l.email = "kishormohite888@gmail.com";
-            l.password = "kishormohite888@gmail.com";
-            l.doLogin();
+            
             //Console.WriteLine("Success");
             
             // Show graphics profiling information while debugging.

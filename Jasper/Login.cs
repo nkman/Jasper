@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Net;
-
+using System.Net.Http;
 namespace Jasper
 {
    public class Login
@@ -31,11 +31,13 @@ namespace Jasper
            if(checkEmail()&&checkPassword())
            {
                //Send a HTTP request here
-               string url = "https://google.com/";
-               Dictionary<String, String> post_params=new Dictionary<string,string>();
-               post_params.Add("email",email);
-               post_params.Add("password",password);
-               post(new Uri(url), post_params, null, success_callback, error_callback);
+               string url = urlConfig.loginUrl();
+               var values = new List<KeyValuePair<string, string>>
+                    {
+                        new KeyValuePair<string, string>("email", email),
+                        new KeyValuePair<string, string>("password", password)
+                    };
+               post(new Uri(url), values);
                return 0;
            }
            else
@@ -61,80 +63,18 @@ namespace Jasper
            else return true;
        }
 
-       void success_callback(Stream response_stream)
+
+
+       public async void post(Uri uri, List<KeyValuePair<string, string>> values)
        {
-           byte[] byteArray=new byte[32];
-           response_stream.BeginRead(byteArray,0,32,null,null);
-           secretKey = byteArray.ToString();
-           System.Diagnostics.Debug.WriteLine("Success");
-       }
+           var httpClient = new HttpClient(new HttpClientHandler());
+           urlConfig urlconfig = new urlConfig();
+           HttpResponseMessage response = await httpClient.PostAsync(uri, new FormUrlEncodedContent(values));
+           //response.EnsureSuccessStatusCode();
+           var responseString = await response.Content.ReadAsStringAsync();
+           secretKey = responseString;
+           System.Diagnostics.Debug.WriteLine("Post success:"+responseString);
 
-       void error_callback(String reason)
-       {
-           System.Diagnostics.Debug.WriteLine(reason);
-       }
-       public void post(Uri uri, Dictionary<String, String> post_params, Dictionary<String, String> extra_headers, RESTSuccessCallback success_callback, RESTErrorCallback error_callback)
-       {
-           HttpWebRequest request = WebRequest.CreateHttp(uri);
-           request.ContentType = "application/x-www-form-urlencoded";
-           request.Method = "POST";
-           if (extra_headers != null)
-               foreach (String header in extra_headers.Keys)
-                   try
-                   {
-                       request.Headers[header] = extra_headers[header];
-                   }
-                   catch (Exception) { }
-
-
-           //we first obtain an input stream to which to write the body of the HTTP POST
-           request.BeginGetRequestStream((IAsyncResult result) =>
-           {
-               HttpWebRequest preq = result.AsyncState as HttpWebRequest;
-               if (preq != null)
-               {
-                   Stream postStream = preq.EndGetRequestStream(result);
-
-                   //allow for dynamic spec of post body
-                   StringBuilder postParamBuilder = new StringBuilder();
-                   if (post_params != null)
-                       foreach (String key in post_params.Keys)
-                           postParamBuilder.Append(String.Format("{0}={1}&", key, post_params[key]));
-
-                   Byte[] byteArray = Encoding.UTF8.GetBytes(postParamBuilder.ToString());
-
-                   //guess one could just accept a byte[] [via function argument] for arbitrary data types - images, audio,...
-
-                   postStream.Write(byteArray, 0, byteArray.Length);
-                   
-                   postStream.Close();
-
-
-                   //we can then finalize the request...
-                   preq.BeginGetResponse((IAsyncResult final_result) =>
-                   {
-                       HttpWebRequest req = final_result.AsyncState as HttpWebRequest;
-                       if (req != null)
-                       {
-                           try
-                           {
-                               //we call the success callback as long as we get a response stream
-                               WebResponse response = req.EndGetResponse(final_result);
-                               System.Diagnostics.Debug.WriteLine("Success");
-                               success_callback(response.GetResponseStream());
-                               return;
-                           }
-                           catch (WebException e)
-                           {
-                               //otherwise call the error/failure callback
-                               System.Diagnostics.Debug.WriteLine(e.Status);
-                               error_callback(e.Message);
-                               return;
-                           }
-                       }
-                   }, preq);
-               }
-           }, request);
        }
     }
 }

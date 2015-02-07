@@ -8,17 +8,17 @@ namespace Jasper
 {
     class urlConfig
     {
-        public string homeUrl()
+        public static string homeUrl()
         {
-            return "Kakul will give this/";
+            return "http://google.com/";
         }
 
-        public string loginUrl()
+        public static string loginUrl()
         {
             return homeUrl() + "login/";
         }
 
-        public string signupUrl()
+        public static string signupUrl()
         {
             return homeUrl() + "signup/";
         }

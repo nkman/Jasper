@@ -49,8 +49,8 @@
                     <TextBlock Text="Email" Margin="0,12,0,0"/>
                     <TextBox x:Name="EmailAddress" Text="Email"/>
                     <TextBlock Text="Password" Margin="0,12,0,0"/>
-                    <TextBox x:Name="Password" Text="Password"/>
-                    <Button x:Name="LoginButton" Content="Login" Margin="0,12,0,0"/>
+                    <PasswordBox x:Name="Password" />
+                    <Button x:Name="LoginButton" Content="Login" Margin="0,12,0,0" Click="Login"/>
 
                     <Button x:Name="GoToRegister" Content="Not Registered ?" Margin="0,56,0,0"/>
                 </StackPanel>
