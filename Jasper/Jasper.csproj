@@ -94,6 +94,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="dbCollection.cs" />
+    <Compile Include="dbServices.cs" />
     <Compile Include="DocListing.xaml.cs">
       <DependentUpon>DocListing.xaml</DependentUpon>
     </Compile>

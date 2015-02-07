@@ -53,6 +53,20 @@ namespace Jasper
             {
                 App.ViewModel.LoadData();
             }
+            /*
+            try
+            {
+                if (userLoggedIn)
+                {
+                    NavigationService.Navigate(new Uri("/DocListing.xaml", UriKind.RelativeOrAbsolute));
+                }
+            }
+            catch (Exception exx)
+            {
+                System.Diagnostics.Debug.WriteLine(exx.ToString());
+            }
+             * */
+
         }
 
         public async void Login(object sender, RoutedEventArgs e)

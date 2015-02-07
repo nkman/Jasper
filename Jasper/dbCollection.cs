@@ -118,7 +118,7 @@ namespace Jasper
         private int _noteId;
 
         [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]
-        public int NoteId
+        public int NoteIDT
         {
             get
             {
@@ -128,8 +128,27 @@ namespace Jasper
             {
                 if (_noteId != value)
                 {
-                    NotifyPropertyChanging("NoteId");
+                    NotifyPropertyChanging("NoteIDT");
                     _noteId = value;
+                    NotifyPropertyChanged("NoteIDT");
+                }
+            }
+        }
+
+        private int _noteIdd;
+        [Column(CanBeNull = true)]
+        public int NoteId
+        {
+            get
+            {
+                return _noteIdd;
+            }
+            set
+            {
+                if (_noteIdd != value)
+                {
+                    NotifyPropertyChanging("NoteId");
+                    _noteIdd = value;
                     NotifyPropertyChanged("NoteId");
                 }
             }
