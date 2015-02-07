@@ -15,11 +15,13 @@ namespace Jasper
        public delegate void RESTSuccessCallback(Stream stream);
        public delegate void RESTErrorCallback(String reason);
 
+       public static User user;
        public Login()
        {
            email = null;
            password = null;
            secretKey = null;
+           user = null;
        }
 
        /* The login function
@@ -74,6 +76,7 @@ namespace Jasper
            var responseString = await response.Content.ReadAsStringAsync();
            secretKey = responseString;
            System.Diagnostics.Debug.WriteLine("Post success:"+responseString);
+                                                    
 
        }
     }
