@@ -45,9 +45,6 @@ namespace Jasper
             }
         }
 
-
-
-
         public void save_local(object sender, EventArgs e)
         {
             using (IsolatedStorageFile isf = IsolatedStorageFile.GetUserStoreForApplication())
@@ -83,7 +80,7 @@ namespace Jasper
 
         public void add_invite(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/invitation.xaml", UriKind.RelativeOrAbsolute));
+            NavigationService.Navigate(new Uri("/invitation.xaml?file=" + fileNameToEdit, UriKind.RelativeOrAbsolute));
         }
 
     }

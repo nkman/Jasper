@@ -129,6 +129,56 @@ namespace Jasper
             }
         }
 
+        public int getNoteId(string name)
+        {
+            userDB = new DbDataContext(DbDataContext.DBConnectionString);
+            var userInDB = from NoteText _user in userDB.notetext select _user;
+            notetext = new ObservableCollection<NoteText>(userInDB);
+
+            foreach (NoteText n in notetext)
+            {
+                if (n.Name == name)
+                    return n.NoteId;
+            }
+            return -1;
+        }
+
+        public List<NoteText> getAllNotes()
+        {
+            userDB = new DbDataContext(DbDataContext.DBConnectionString);
+            var userInDB = from NoteText _user in userDB.notetext select _user;
+            notetext = new ObservableCollection<NoteText>(userInDB);
+            List<NoteText> n = new List<NoteText>(notetext);
+            return n;
+        }
+
+        public List<userData> getAllUser()
+        {
+            userDB = new DbDataContext(DbDataContext.DBConnectionString);
+            var userInDB1 = from userData _user in userDB.userdata select _user;
+            userdata = new ObservableCollection<userData>(userInDB1);
+            List<userData> n = new List<userData>(userdata);
+            return n;
+        }
+        public void truncateAllTable()
+        {
+            foreach (NoteText n in getAllNotes())
+            {
+                notetext.Remove(n);
+                userDB.notetext.DeleteOnSubmit(n);
+                userDB.SubmitChanges();
+                System.Diagnostics.Debug.WriteLine("deleted note");
+            }
+
+            foreach (userData n in getAllUser())
+            {
+                userdata.Remove(n);
+                userDB.userdata.DeleteOnSubmit(n);
+                userDB.SubmitChanges();
+                System.Diagnostics.Debug.WriteLine("deleted user");
+            }
+        }
+
         #region INotifyPropertyChanged Members
 
         public event PropertyChangedEventHandler PropertyChanged;

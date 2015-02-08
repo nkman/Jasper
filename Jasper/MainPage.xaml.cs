@@ -66,8 +66,10 @@ namespace Jasper
             {
                 System.Diagnostics.Debug.WriteLine(exx.ToString());
             }
-             
-
+            while (NavigationService.CanGoBack)
+            {
+                NavigationService.RemoveBackEntry();
+            }
         }
 
         public async void Login(object sender, RoutedEventArgs e)

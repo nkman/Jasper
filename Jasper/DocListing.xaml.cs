@@ -113,6 +113,13 @@ namespace Jasper
         {
             NavigationService.RemoveBackEntry();
         }
+
+        public void logout(object sender, EventArgs e)
+        {
+            dbServices d = new dbServices();
+            d.truncateAllTable();
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
+        }
     }
 
     public class DocumentList

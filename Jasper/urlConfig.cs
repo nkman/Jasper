@@ -32,5 +32,9 @@ namespace Jasper
         {
             return homeUrl() + "listDoc.php";
         }
+
+        public static string inviteUrl(){
+            return homeUrl() + "sendInvite.php";
+        }
     }
 }
