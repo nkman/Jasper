@@ -22,5 +22,19 @@ namespace Jasper
         {
             return homeUrl() + "signup.php";
         }
+
+        public static string createNoteUrl()
+        {
+            return homeUrl() + "createDoc.php";
+        }
+
+        public static string getAllNoteUrl()
+        {
+            return homeUrl() + "listDoc.php";
+        }
+
+        public static string inviteUrl(){
+            return homeUrl() + "sendInvite.php";
+        }
     }
 }

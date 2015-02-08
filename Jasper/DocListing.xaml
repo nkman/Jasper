@@ -47,8 +47,11 @@
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
 
             <shell:ApplicationBarIconButton Click="Create_New" IconUri="add.png" Text="Add" />
-            
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="Logout" Click="logout"/>
+            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
+        
     </phone:PhoneApplicationPage.ApplicationBar>
     
 </phone:PhoneApplicationPage>

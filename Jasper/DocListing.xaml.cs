@@ -12,6 +12,7 @@ using Windows.Storage;
 using System.IO.IsolatedStorage;
 using System.IO;
 using System.Collections.ObjectModel;
+using System.Windows.Controls.Primitives;
 
 namespace Jasper
 {
@@ -105,7 +106,19 @@ namespace Jasper
 
         public void Create_New(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Lol");
+            NavigationService.Navigate(new Uri("/PopUpUserControl.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            NavigationService.RemoveBackEntry();
+        }
+
+        public void logout(object sender, EventArgs e)
+        {
+            dbServices d = new dbServices();
+            d.truncateAllTable();
+            NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 
